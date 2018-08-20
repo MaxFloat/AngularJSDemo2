@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Лабораторная работа 2.2: создание элементов списка</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+      function extend(input)
+      {
+          let sel = document.getElementById("year")
+          let options = sel.options
+          
+          if (input.name == 'sub') {
+              let op = options[0]
+              
+              let val = op.value - 1
+
+              let nn = op.cloneNode(true)
+              nn.value = val
+              nn.text = (val)
+              sel.insertBefore(nn, op)
+              nn.selected = true
+          }
+          else {
+              let op = options[options.length - 1]
+              let val = +op.value + 1
+              let nn = op.cloneNode(true)
+              nn.value = val
+              nn.text = val
+              sel.appendChild(nn, op)
+              nn.selected = true
+          }
+      }
+      //правила сравнения:
+      // если типы одинаковы - тривиально
+      // иначе всё приводится к числам и сравнивается (даже true / false приводятся к числу)
+      // строка приводится к числу (если в ней число), либо NaN
+      // объекты - дёргается valueOf для примитивов, либо toString - для объектов, а потом - опять же к числам
+      // null >=0 !!!! Но (null == false) == false, причём (null == true) == false
+      // потому что a >=b эквивалентно !(a < b)
+      function onClickEventMy(e) { //e - event
+          //e.target - clicked object
+          //e.currentTarget - this, if child object is clicked
+          //e.button - which button
+          //e.altKey - key state (bool)
+          //e.shiftKey etc
+          //e.clientX (Y)
+          //e.screenX (Y)
+          //e.keyCode ASCII?
+          //e.stopPropagation() - не вызывать у родителей
+          //e.preventDefault() - не вызывать умолчания, повешенные на эти события (типа form.submit() при onsubmit() )
+      }
+  </script>
+</head>
+
+<body>
+  <h1>Создание элементов списка</h1>
+  <form action="">
+    <fieldset>
+      <legend>Изменение элементов списка</legend>
+      <div class="block">
+        <label for="year"><span>Год рождения</span>
+        </label>
+        <div class="group">
+          <input type="button" name="sub" value="-" onclick="extend(this)">
+          <select name="year" id="year">
+            <option value="1970">1970</option>
+            <option value="1971">1971</option>
+            <option value="1972">1972</option>
+            <option value="1973">1973</option>
+            <option value="1974">1974</option>
+            <option value="1975">1975</option>
+          </select>
+          <input type="button" name="add" value="+"  onclick="extend(this)">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</body>
+
+</html>

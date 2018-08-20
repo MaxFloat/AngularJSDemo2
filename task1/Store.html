@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Store</title>
+    <title>Max Float</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="text/javascript" src="./main_funcs.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript" src="./scripts/angular.min.js"></script>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/i18n/angular-locale_ru-ru.js"></script>
+    <style>
+        input.ng-invalid {
+            outline: 3px solid red;
+        }
+    </style>
+    <script>
+        angular.module('alApp', [/*dependency module names*/])
+        angular.module('alApp').controller('mctrl', function ($scope) {
+            $scope.goods = [
+                { Caption: 'pork', Price: 50, Quantity: 15, Type: 'meat' },
+                { Caption: 'chicken', Price: 25, Quantity: 12, Type: 'meat' },
+                { Caption: 'salmon', Price: 150, Quantity: 1, Type: 'fish' },
+                { Caption: 'kilka', Price: 15, Quantity: 13, Type: 'fish' },
+                { Caption: 'unagi', Price: 160, Quantity: 12, Type: 'fish' },
+                { Caption: 'beef', Price: 50, Quantity: 11, Type: 'meat' },
+                { Caption: 'potato', Price: 150, Quantity: 19, Type: 'vegetable' }
+            ]
+            $scope.search = ''
+            $scope.alOrderBy ='Caption'
+            $scope.getSum = function (arr) {
+                let sum = 0;
+                for (let i = 0; i < arr.length; i++)
+                    sum += arr[i].Price * arr[i].Quantity;
+                return sum;
+            }
+            $scope.accOrder = false
+            $scope.setOrder = function (key)
+            {
+                if ($scope.alOrderBy === key)
+                    $scope.accOrder = !$scope.accOrder;
+                else
+                    $scope.accOrder = false;
+                $scope.alOrderBy = key;
+            }
+            //$scope.inc_price = function (x) { x.price += 1 }
+            //$scope.dec_price = function (x) { x.price -= 1 }
+            //$scope.tel = "244-55-66"
+        })
+        angular.module('alApp').directive("copyright", function () {
+            return {
+                restrict: "EA", // EACM element, attribute, class, memo
+                templateUrl: "cprt.html"//<b>Copyright 2018</b>" // or templateUrl: "template.html", or templateUrl: function(elem, attrs) {...}
+                //template : "<b>Copyright 2018</b>"
+            };
+        })
+        angular.module('alApp').filter("reverse", function () {
+            return function (x)
+            {
+                if (!x)
+                    return ''
+                let res = ''
+                for (let i = 0; i < x.length; i++)
+                    res = res + x[x.length - i - 1];
+                return res;
+            }
+        })
+    </script>
+</head>
+<body ng-app="alApp">
+    <h1>General Store</h1>
+    <div ng-controller="mctrl" style="text-align:center;align-items:center">
+        <p>Search:   <input type="text" ng-model="search" /></p>
+        <table border="1" style="margin:auto">
+            <thead>
+                <tr>
+                    <th ng-repeat="(key,value) in goods[0]" ng-click="setOrder(key)">
+                        {{key}}
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in goods | filter: {$: search} |orderBy:alOrderBy:accOrder">
+                    
+                    <td ng-repeat="(key,value) in x">
+                        <div ng-switch="key">
+                            <div ng-switch-when="Price">
+                                {{value | currency}}
+                            </div>
+                            <div ng-switch-when="Type">
+                                {{value }} (arabian:{{(value | reverse)}})
+                            </div>
+                            <div ng-switch-default>
+                                {{value}}
+                            </div>
+                        </div>
+                </td>
+                    </tr>
+                <tr>
+                    <td colspan="3">Sum:</td> <td ng-bind="getSum(goods | filter: {$:search})"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+
+        
+ 
+</body>
+</html>

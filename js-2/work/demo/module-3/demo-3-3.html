@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Всплытие пузырька</title>
+  <style>
+    p, div, h1, h2 {
+      padding: 30px;
+      font-size: 24px;
+    }
+    p{background: #ccf;}
+    div{background: yellow;}
+    h1, h2{background: orange;}
+    strong{background: gold;}
+  </style>
+  <script>
+    function showElementTag(obj){
+      console.log(obj);
+    }  
+  </script>
+</head>
+
+<body onclick="showElementTag(this)">
+  <h1 onclick="showElementTag(this)">Всплытие пузырька</h1>
+  <div onclick="showElementTag(this)">
+    <h2 onclick="showElementTag(this)">Заголовок второго уровня</h2>
+    <p onclick="showElementTag(this)">Параграф
+      <strong onclick="showElementTag(this)">
+		Текст внутри элемента strong</strong>
+    </p>
+  </div>
+  
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+</head>
+<body>
+
+    <h1>AngularJS Services</h1>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <h3>Url: {{myUrl}}</h3>
+        <h3>Server time: <span ng-bind="myLoadedData"></span></h3>
+        <h3>{{localTime}}</h3>
+        <h3>0x{{hex}}</h3>
+        <h3>{{255 | myHexFormat}}</h3>
+
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl',
+            function ($scope, $location, $http,
+                $timeout, $interval, myServiceName) {
+            $scope.myUrl = $location.absUrl();
+
+            $scope.myLoadedData = ".. in 6 seconds";
+            $timeout(function () {
+                $http(
+                    {
+                        method: "GET",
+                        url: "serverTime.aspx"
+                    }
+                ).then(function mySuccess(response) {
+                    $scope.myLoadedData = response.data;
+                }, function myError(response) {
+                    $scope.myLoadedData = "Failed " +
+                        response.statusText;
+                })
+
+            }, 6000);
+
+            //$http.get("serverTime.aspx").then(
+            //    function (response) {
+            //        $scope.myLoadedData = response.data;
+            //});
+
+            $scope.localTime = new Date().toLocaleTimeString();
+            $interval(function () {
+                $scope.localTime = new Date().toLocaleTimeString();
+            }, 1000);
+
+            $scope.hex = myServiceName.toHex(255);
+
+            });
+
+        app.service('myServiceName', function () {
+            this.toHex = function (x) {
+                return x.toString(16);
+            }
+        });
+
+        app.filter('myHexFormat', ['myServiceName',
+            function (srv) {
+                return function (x) {
+                    return "0x" + srv.toHex(x);
+                }
+
+            }
+        ]);
+        //$window
+        //angular.fromJson
+        //angular.toJson
+
+
+
+
+    </script>
+
+</body>
+</html>

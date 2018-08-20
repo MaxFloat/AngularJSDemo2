@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Использование элементов SELECT и OPTION</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../css/form.css">
+  <script>
+    /*
+     ** Коллекция ссылок
+     */
+    let links = {
+      "Яндекс": "http://www.yandex.ru",
+      "Бинг": "http://www.bing.com",
+      "Гугль": "http://www.google.ru"
+    };
+    let s;
+    window.onload = function(){
+      // Создадим в списке SELECT элементы OPTION
+      s = document.getElementById("selURL");
+      for(let linkName in links){
+        let o = document.createElement("option");
+        o.value = links[linkName];
+        o.text = linkName;
+        s.appendChild(o);
+      }
+    }
+    function goToURL(){
+      let url = s.options[s.selectedIndex].value;
+      location.assign(url);
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Использование элементов SELECT и OPTION</h1>
+  <form action="#" id="myForm" onsubmit="return false">
+    <label for="selURL">Выберите адрес</label>
+    <select id="selURL" name="selURL"></select>
+    <button onclick="goToURL()">Переход</button>
+  </form>
+
+  
+</body>
+
+</html>

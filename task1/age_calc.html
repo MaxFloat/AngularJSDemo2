@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Store</title>
+    <title>Max Float</title>
+    <!-- link rel="stylesheet" href="styles.css" /-->
+    
+    <script type="text/javascript" src="./scripts/angular.min.js"></script>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <style>
+        input.ng-invalid {
+            outline: 3px solid red;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: burlywood
+        }
+    </style>
+    <!-- ng-options="x.name for x in persons" и выберется x, а не x.name при биндинге-->
+    <script>
+        angular.module('alApp', [/*dependency module names*/])
+        angular.module('alApp').controller('mctrl', function($scope) {
+            $scope.age = 40;
+            $scope.year = 1978;
+            $scope.recalcYear = function () {
+                $scope.year = (new Date()).getFullYear() - $scope.age
+            }
+            $scope.recalcAge = function () {
+                $scope.age = (new Date()).getFullYear() - $scope.year
+            }
+        })
+        
+    </script>
+</head>
+<body ng-app="alApp">
+
+    <div ng-controller="mctrl as ctrl" style="text-align:center;align-items:center">
+        <!--div ng-controller="mctrl2 as ctrl2">
+            <!-- здесь у ctrl2 будет прототипом ctrl, типа наследование>
+        </div -->
+        
+        <form name="mF">
+        
+            <table border="1" style="margin:auto">
+                <tr>
+                    <td>Age:</td>
+                    <td><input type="number" name="age" ng-model="age" title="Type Age Here" ng-change="recalcYear()"/></td>
+                    
+                </tr>
+                <tr>
+                    <td>Birth Year:</td>
+                    <td><input type="number" name="year" ng-model="year" title="Type Birth Year Here" ng-change="recalcAge()" /></td>
+                </tr>
+                
+            </table>
+            
+        </form>
+    </div>
+
+</body>
+</html>

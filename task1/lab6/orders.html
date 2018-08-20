@@ -1,0 +1,28 @@
+﻿<p>Search:   <input type="text" ng-model="search" /></p>
+<table border="1" style="margin:auto">
+    <thead>
+        <tr>
+            <th ng-repeat="(key,value) in orders[0]" ng-click="setOrder(key)">
+                {{key}}
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="x in orders | filter: {$: search} |orderBy:alOrderBy:accOrder">
+
+            <td ng-repeat="(key,value) in x">
+                <div ng-switch="key">
+                    <!--div-- ng-switch-when="Price">
+                        {{value | currency}}
+                    </!--div-->
+
+                    <div ng-switch-default>
+                        {{value}}
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

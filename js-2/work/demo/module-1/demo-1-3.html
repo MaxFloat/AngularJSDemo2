@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Запись в документ</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../css/form.css" />
+  <script>
+    document.write('<style>html{background:#ffc;}</style>');
+    document.write('<div>Содержание добавлено из скрипта в head</div>');
+
+    function demoWrite() {
+      document.write("<html>", "<body>");
+      document.write("<h1>Переписали документ!</h1>");
+      document.write("</body>", "</html>");
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Запись в документ</h1>
+  <button onclick="demoWrite()">Переписываем документ</button>
+</body>
+
+</html>

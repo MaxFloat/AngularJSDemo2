@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="angular.min.js"></script>
+    <script>
+        angular.module('myApp', []).
+            controller('myCtrl', function ($scope) {
+                $scope.myCol = '#0000FF';
+            });
+
+        //angular.module('myApp').controller
+    </script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl" 
+         ng-init="myCol='#FF0000'; quantity=5; price=100;name='Sergey'; age=39; person={name:'Andrey', age:43}; arr=['RED', 'GREEN', 'BLUE']">
+        <p>Выражение внутри ng: {{5+5}}</p>
+        <p>Всего quantity*price: {{quantity*price}}</p>
+        <p>Выражение со строкой: {{ name + " - " + age}}</p>
+        <p>Выражение со объектом: {{person.name}}  : {{person.age}}</p>
+        <p>Выражение с массивом: {{arr[0]}}, {{arr[1]}},
+        <span ng-bind="arr[2]"><span>
+        </p>
+
+        <input type="color" ng-model="myCol" value="{{myCol}}">
+        <div style="width:50px;height:50px;background-color:{{myCol}}"></div>
+    </div>
+    <div>
+        <p>Выражение вне ng: {{5+5}}</p>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <h1>Common Header</h1>
+    <nav>
+        <a href="#!">Main</a>
+        <a href="#!p1">Page 1</a>
+        <a href="#!p2">Page 2</a>
+        <a href="#!p3">Page 3</a>
+
+    </nav>
+    <div ng-view></div>
+    <script>
+        var app = angular.module('myApp', ['ngRoute']);
+        app.config(function ($routeProvider) {
+            $routeProvider
+                .when("/", {
+                    templateUrl: 'views/main.html',
+                })
+                .when("/p1", {
+                    templateUrl: 'views/page1.html',
+                    controller: 'page1Controller'
+
+                })
+                .when("/p2", {
+                    templateUrl: 'views/page2.html',
+                    controller: 'page2Controller'
+                })
+                .when("/p3", {
+                    templateUrl: 'views/page3.html'
+                })
+                .otherwise({
+                    template : "<h2>Page not found</h2>"
+                });
+        });
+
+        app.controller('page1Controller', function ($scope) {
+            $scope.message = "Message from 1 controller"
+        })
+        app.controller('page2Controller', function ($scope) {
+            $scope.message = "Message from 2 controller"
+        })
+    </script>
+
+</body>
+</html>

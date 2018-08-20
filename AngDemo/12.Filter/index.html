@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+    <script src="Scripts/i18n/angular-locale_ru-ru.js"></script>
+
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+   <p>UserName: {{userName | uppercase}}</p>
+    <ul>
+        <li ng-repeat=" p in persons | orderBy:'age':true">
+            {{p.name | myFilter:3}} : {{p.age}}
+        </li>
+    </ul>
+    <p>Сегодня: {{now | date}}</p>
+    <p>Текущий год: {{now | date: 'yyyy'}}</p>
+    <p>
+        <input type="search" ng-model="searchName">
+    </p>
+    <ul>
+        <li ng-repeat=" p in persons | filter: {name:searchName}">
+            {{p.name}} : {{p.age}}
+        </li>
+    </ul>
+    <table border="1">
+        <tr>
+            <th ng-click="orderByMe('name')">Имя</th>
+            <th ng-click="orderByMe('age')">Возраст</th>
+        </tr>
+        <tr ng-repeat=" p in persons | orderBy:myOrderBy:reverseOrderBy" >
+            <td>{{p.name}}</td>
+            <td>{{p.age}}</td>
+        </tr>
+    </table>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('myCtrl', function ($scope, $rootScope) {
+            $scope.userName = 'Sergey';
+            $scope.now = new Date();
+            $scope.persons = [
+                { name: 'Sergey', age: 39 },
+                { name: 'Kosty', age: 11 },
+                { name: 'Nataliya', age: 35, lastName: 'Shuykova' },
+                { name: 'Alex', age: 7 }
+            ]
+            $scope.reverseOrderBy = false;
+            $scope.orderByMe = function (x) {
+                $scope.myOrderBy = x;
+                $scope.reverseOrderBy = !$scope.reverseOrderBy;
+            }
+        });
+
+        app.filter('myFilter', function () {
+            return function (x,n) {
+                return x.substring(x.length - n);
+            }
+
+        })
+
+    </script>
+
+</body>
+</html>

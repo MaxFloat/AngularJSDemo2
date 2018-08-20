@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Store</title>
+    <title>Max Float</title>
+    <!-- link rel="stylesheet" href="styles.css" /-->
+    <script type="text/javascript" src="./main_funcs.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript" src="./scripts/angular.min.js"></script>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <style>
+        input.ng-invalid {
+            outline: 3px solid red;
+        }
+        h1 {
+            text-align:center;
+            background-color:burlywood
+        }
+    </style>
+    <!-- ng-options="x.name for x in persons" и выберется x, а не x.name при биндинге-->
+    <script>
+        angular.module('alApp', [/*dependency module names*/])
+        angular.module('alApp').controller('mctrl', function($scope) {
+            $scope.title = "Mr.";
+            $scope.firstname = "John";
+            $scope.lastname = "Smith";
+        })
+        angular.module('alApp').directive("copyright", function() {
+        return {
+        restrict : "EA", // EACM element, attribute, class, memo
+        templateUrl : "cprt.html"//<b>Copyright 2018</b>" // or templateUrl: "template.html", or templateUrl: function(elem, attrs) {...}
+        //template : "<b>Copyright 2018</b>"
+        };
+        })
+    </script>
+</head>
+<body ng-app="alApp">
+    
+    <div ng-controller="mctrl as ctrl" style="text-align:center;align-items:center">
+        <div ng-controller="mctrl2 as ctrl2">
+            <!-- здесь у ctrl2 будет прототипом ctrl, типа наследование-->
+        </div>
+        <!-- {{ctrl.data}} -->
+        <form name="mF">
+            <h1>Recipient</h1>
+            <table border="1" style="margin:auto">
+                <tr>
+                    <td>Title:</td>
+                    <td>
+                        <select ng-model="title" name="title">
+                            <option value="Mr.">
+                                Mr.
+                            </option>
+                            <option value="Mrs">
+                                Mrs.
+                            </option>
+                            <option value="Madame">
+                                Madame
+                            </option>
+                            <option value="Miss">
+                                Miss
+                            </option>
+                            <option value="Sir">
+                                Sir
+                            </option>
+                            <option value="Dr">
+                                Dr.
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Firstname:</td>
+                    <td><input type="text" name="firstname" ng-model="firstname" required title="Type The Firstname Here" /><span ng-show="mF.tel.$error.required">*</span></td>
+                </tr>
+                <tr>
+                    <td>Lastname:</td>
+                    <td><input type="text" name="lastname" ng-model="lastname" required title="Type The Lasstname Here" /><span ng-show="mF.tel.$error.required">*</span></td>
+                </tr>
+            </table>
+            <h1>The Letter Content</h1>
+            <textarea style="width:500px; height:200px">Hello, {{title}} {{firstname}} {{lastname}}!
+
+...put your text body here....
+
+ See you later,
+your manager.</textarea>
+
+        </form>
+    </div>
+
+
+</body>
+</html>

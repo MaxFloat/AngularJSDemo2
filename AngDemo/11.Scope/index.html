@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <p>rootScope prefferedColor</p>
+    <h1>{{prefferedColor}}</h1>
+
+    <div  ng-controller="myCtrl">
+        <p>scope for controller prefferedColor</p>
+        <h1>{{prefferedColor}}</h1>
+
+    </div>
+
+    <p>rootScope prefferedColor</p>
+    <h1>{{prefferedColor}}</h1>
+    <script>
+        var app = angular.module('myApp', []);
+        app.run(function ($rootScope) {
+            $rootScope.prefferedColor = 'Red';
+        });
+
+        app.controller('myCtrl', function ($scope, $rootScope) {
+            $scope.prefferedColor = 'Green';
+            $rootScope.prefferedColor = 'Blue'
+        });
+
+    </script>
+
+</body>
+</html>

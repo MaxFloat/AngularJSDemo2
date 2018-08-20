@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Свойства событий</title>
+  <style>
+    body { width: 100%; height: 100%; cursor: crosshair }
+    #result { position: absolute; top: 0px; right: 0px; width: 300px; font-size: 120%; background-color:#cfc; padding: 10px }
+    h1, h2{background: maroon; color:white}
+    div{background: yellow}
+    p{background: silver}
+    strong{background: orange}
+  </style>
+  <script>
+    window.onmousemove = showEventProperties;
+    window.onmousedown = showEventProperties;
+    window.onmouseup = showEventProperties;
+    window.onkeydown = showEventProperties;
+    window.onkeyup = showEventProperties;
+    
+    let result;
+    window.onload = function(){
+	 result = document.forms[0].result;
+    };
+    function showEventProperties(e){
+      result.value = 
+            "target: " + e.target + "\n" +
+            "clientX: " + e.clientX + "\n" + 
+            "clientY: " + e.clientY + "\n" + 
+            "screenX: " + e.screenX + "\n" + 
+            "screenY: " + e.screenY + "\n" + 
+            "button: " + e.button + "\n" +
+            "keyCode: " + e.keyCode + "\n" +
+            "altKey: " + e.altKey + "\n" +
+            "ctrlKey: " + e.ctrlKey + "\n" +
+            "shiftKey: " + e.shiftKey + "\n";
+    }
+  </script>
+</head>
+
+<body>
+  <form id="f"></form>
+  <textarea form="f" id="result" name="result"></textarea>
+  <h1>Объект event</h1>
+  <div>
+    <h2>Заголовок</h2>
+    <p>Параграф<br/>
+      <strong>Жирный текст</strong><br/>&nbsp;
+    </p>
+    &nbsp;
+  </div>
+  <input type="submit" form="f" value="Кнопка"/>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+    <style>
+        input.ng-invalid
+        {
+            outline : 3px solid red;
+        }
+    </style>
+</head>
+<body>
+    <form ng-app="" name="myForm">
+        E-mail :
+        <input type="email" name="userEmailAddress" ng-model="userEmail" required>
+        <span ng-show="myForm.userEmailAddress.$error.email">*</span>
+        <h3>Статусы</h3>
+        <p>Valid: {{myForm.userEmailAddress.$valid}}</p>
+        <p>Dirty: {{myForm.userEmailAddress.$dirty}}</p>
+        <p>Pristine: {{myForm.userEmailAddress.$pristine}}</p>
+        <p>Touched: {{myForm.userEmailAddress.$touched}}</p>
+    </form>
+
+</body>
+</html>

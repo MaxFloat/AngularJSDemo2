@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>lab1</title>
+    <!-- script src="Scripts/jquery-3.3.1.min.js"></script -->
+    
+</head>
+<body>
+    <form id="frm" >
+        <fieldset>
+            <legend>Форма</legend>
+            <div>
+                <label for="fname">
+                    Имя:<span>*</span>
+                </label>
+                <input type="text" name="fname" id="fname">
+            </div>
+            <div>
+                <label for="lname">
+                    Фамилия:<span>*</span>
+                </label>
+                <input type="text" name="lname" id="lname">
+            </div>
+            <div>
+                <label for="email">
+                    E-mail:<span>*</span>
+                </label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div>
+                <input type="radio" name="gender" selected>женщина
+                <input type="radio" name="gender">мужчина
+            </div>
+            <div>
+                <label for="phone">
+                    Телефон:<span>*</span>
+                </label>
+                <input type="text" name="phone" id="phone">
+            </div>
+            <div id="button">
+                <input type="button" onclick="sendMe();" value="Отправить" />
+            </div>
+        </fieldset>
+
+    </form>
+
+    <script>
+        function sendForm() {
+            alert("Отправлено!")
+        }
+        function sendMe()
+        {
+            
+            var f = document.getElementById("frm")
+
+            var inputs = f.getElementsByTagName("input")
+
+            for (input of inputs) {
+                console.log(input)
+                if (input.type !== "text") 
+                    continue
+                if (input.value.length == 0) {
+                    
+                    input.style = "outline: 3px solid red;"
+                    alert("Fail")
+                    return
+                }
+                else
+                    input.style = ""
+            }
+
+            f.submit()
+        }
+    </script>
+</body>
+
+</html>

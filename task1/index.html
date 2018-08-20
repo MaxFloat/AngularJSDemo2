@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>Max Float</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="text/javascript" src="./main_funcs.js"></script>
+    <script src="Scripts/bootstrap.js"></script><link href="Content/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript" src="./scripts/angular.min.js"></script>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <!-- https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js -->
+    <script>
+        var app_module = angular.module('alApp', [/*dependency module names*/])
+        //app_module.config(callback) callback invoked when
+        //app_module.constant(key,value)
+        //app_module.contorller(name, constructor)
+        //app_module.directive(name, factory)
+        //app_module.factory(name, factory)
+        //app_module.provider(name, type)
+        //app_module.service(name, constructor)
+        //app_module.filter(name, factory)
+        // var app_module = angular.module('alApp') - getter
+        app_module.controller('mctrl', function($scope) {
+        $scope.myColor = '#00FF00'
+        $scope.price = 10
+        $scope.ttt = function () {$scope.price += 5; }
+        $scope.persons = [{name:'bill', age:50}, {name:'bill3', age:55}, {name:'bill2', age:54}]
+        $scope.inc_age = function (x) {x.age += 1}
+        })
+        app_module.directive("someDirective", function() {
+        return {
+        restrict : "EA", // EACM element, attribute, class, memo
+        template : "<b>" + (new Date()).toLocaleTimeString()+ "</b>" // or templateUrl: "template.html", or templateUrl: function(elem, attrs) {...}
+        };
+        })
+    </script>
+</head>
+<body ng-app="alApp">
+	<h1 class="momo1" id="foo">
+		JavaScript lalalas
+	</h1>
+    {{5+5}}
+    <input type="text" ng-model="mmm" />
+    <p>{{mmm}}</p>
+    <div ng-controller="mctrl">
+
+        <some-directive></some-directive>
+        <div some-directive></div>
+        <!-- <ng-include src="myfile.html"></ng-include> -->
+        <input type="text" ng-model="price" />
+        <input type="button" value="inc" ng-click="ttt()" />
+
+        <ul>
+            <li ng-repeat="x in persons">
+                {{x.name}}, {{x.age}} <input type="button" value="inc" ng-click="inc_age(x)" />
+            </li>
+        </ul>
+    </div>
+	<div class="m1">
+		<div>
+			grey
+		</div>
+	</div>
+</body>
+</html>

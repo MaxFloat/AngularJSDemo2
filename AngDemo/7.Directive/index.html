@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+
+</head>
+<body>
+    <div ng-app="" ng-init="quantity=1;price=5">
+
+        Количество: <input type="number" ng-model="quantity">
+        Цена:    <input type="number" ng-model="price">
+
+        Всего: {{ quantity * price }}
+    </div>
+
+</body>
+</html>

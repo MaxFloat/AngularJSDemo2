@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Манипуляции с окнами</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../css/form.css" />
+  <script>
+    let win;
+
+    function winOpen() {
+      win = window.open('', '', 'width=300, height=300, top=300, left=300');
+      win.focus();
+    }
+
+    function demoMoveTo() {
+      win.focus();
+      win.moveTo(100, 100);
+    }
+
+    function demoResizeTo() {
+      win.focus();
+      win.resizeTo(100, 100);
+    }
+
+    function demoMoveBy() {
+      win.focus();
+      win.moveBy(20, 20);
+    }
+
+    function demoResizeBy() {
+      win.focus();
+      win.resizeBy(10, 10);
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Манипуляции с окнами</h1>
+  <fieldset>
+    <legend>Открываем окно</legend>
+    <button onclick="winOpen()">Open</button>
+  </fieldset>
+  <fieldset>
+    <legend>Двигаем окно</legend>
+    <button onclick="demoMoveTo()">moveTo</button>
+    <button onclick="demoMoveBy()">moveBy</button>
+  </fieldset>
+  <fieldset>
+    <legend>Изменяем размер окна</legend>
+    <button onclick="demoResizeTo()">resizeTo</button>
+    <button onclick="demoResizeBy()">resizeBy</button>
+  </fieldset>
+</body>
+
+</html>

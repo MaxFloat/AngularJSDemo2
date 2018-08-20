@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Новое окно</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../css/form.css" />
+  <script>
+    let win;
+
+    function demoOpen(params) {
+      if (!params)
+        win = window.open("");
+      else
+        win = window.open("", "", params);
+    }
+
+
+    function demoActivate(focus) {
+      if (focus)
+        win.focus();
+      else
+        win.blur();
+    }
+
+    function demoClose() {
+      if(!win.closed)
+        win.close();
+    }
+
+    function demoParent() {
+      window.open("demo-1-6-1.html", "", "top=200, left=200, width=300, height=300");
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Новое окно</h1>
+  <fieldset>
+    <legend>Создание окна</legend>
+    <button onclick="demoOpen()">Без параметров</button>
+    <button onclick="demoOpen('width=300, height=300')">Width, Height</button>
+    <button onclick="demoOpen('top=200, left=200, width=300, height=300')">Top, Left</button>
+  </fieldset>
+  <fieldset>
+    <legend>Активация окна</legend>
+    <button onclick="demoActivate(true)">Активируем окно</button>
+    <button onclick="demoActivate(false)">Деактивируем окно</button>
+  </fieldset>
+  <fieldset>
+    <legend>Закрытие окна</legend>
+    <button onclick="demoClose()">Закрываем окно</button>
+  </fieldset>
+  <fieldset>
+    <legend>Доступ к родительскому окну</legend>
+    <button onclick="demoParent()">Кто тебя открыл?</button>
+  </fieldset>
+</body>
+
+</html>

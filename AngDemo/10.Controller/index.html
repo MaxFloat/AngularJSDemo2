@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+    <script src="myScripts/myApp.js"></script>
+    <script src="myScripts/Controllers/nameListController.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="nameListController">
+
+        Имена: <input type="text" ng-model="nameString" ng-change="toNameList(nameString)">
+        <ul>
+            <li ng-repeat="n in names">{{n}}</li>
+        </ul>
+    </div>
+
+
+</body>
+</html>

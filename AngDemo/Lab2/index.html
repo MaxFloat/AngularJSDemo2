@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+
+</head>
+<body>
+    <h1>Lab 2</h1>
+    <div ng-app="myApp" ng-controller="goodController">
+        <table border="1">
+            <tr>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Сумма</th>
+            </tr>
+            <tr ng-repeat="g in goods">
+                <td>{{g.title}}</td>
+                <td>{{g.quantity}}</td>
+                <td>{{g.price}}</td>
+                <td>{{g.quantity*g.price}}</td>
+            </tr>
+            <tr>
+                <th colspan="3">Всего: </th>
+                <th>{{ getSumma()}}</th>
+
+            </tr>
+        </table>
+        <copyright/>
+    </div>
+    <script>
+        angular.module('myApp', []).
+            controller('goodController', function ($scope) {
+                $scope.goods = [
+                    { title: 'Книга', quantity: 10, price: 300 },
+                    { title: 'Диск', quantity: 5, price: 100 },
+                    { title: 'Флэшка', quantity: 2, price: 600 }
+                ];
+                $scope.getSumma = function () {
+                    var summa = 0;
+                    for (var i = 0; i < $scope.goods.length; i++)
+                        summa += $scope.goods[i].price * $scope.goods[i].quantity;
+                    return summa;
+                }
+            });
+
+        angular.module('myApp').
+            directive('copyright', function () {
+                return {
+                    restrict: "E",
+                    template: "Copyright " + (new Date()).getFullYear()
+                };
+            });
+
+
+    </script>
+
+</body>
+</html>

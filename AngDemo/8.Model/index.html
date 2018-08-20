@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myController">
+        <h1 ng-click="myClick()">
+            Click count {{ clickCount }}!
+        </h1>
+
+
+        Количество: <input type="number" ng-model="quantity">
+        Цена:    <input type="number" ng-model="price">
+
+        Всего: {{ quantity * price }}
+    </div>
+    <script>
+        angular.module('myApp', []).
+            controller('myController', function ($scope) {
+                $scope.quantity = 1;
+                $scope.price = 5;
+                $scope.clickCount = 0;
+                $scope.myClick = function () {
+                    $scope.clickCount++;
+                }
+            });
+    </script>
+
+</body>
+</html>

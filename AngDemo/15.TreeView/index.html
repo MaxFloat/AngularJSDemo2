@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular.treeview.js"></script>
+    <link href="css/angular.treeview.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h1>angular.treeview</h1>
+    <div ng-app="myApp" ng-controller="myController">
+        <div>
+            <div>
+                <span><b>Selected Node</b> : {{tree.currentNode.roleName}}</span>
+            </div>
+            <div data-angular-treeview="true"
+                 data-tree-id="tree"
+                 data-tree-model="roleList"
+                 data-node-id="roleId"
+                 data-node-label="roleName"
+                 data-node-children="children">
+            </div>
+        </div>
+    </div>
+    <script>
+        var myApp = angular.module('myApp', ['angularTreeview']);
+        myApp.controller('myController', function ($scope) {
+            $scope.roleList = [
+                {
+                    "roleName": "User", "roleId": "role1", "children": [
+                        { "roleName": "subUser1", "roleId": "role11", "children": [] },
+                        {
+                            "roleName": "subUser2", "roleId": "role12", "children": [
+                                {
+                                    "roleName": "subUser2-1", "roleId": "role121", "children": [
+                                        { "roleName": "subUser2-1-1", "roleId": "role1211", "children": [] },
+                                        { "roleName": "subUser2-1-2", "roleId": "role1212", "children": [] }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+
+                { "roleName": "Admin", "roleId": "role2", "children": [] },
+
+                { "roleName": "Guest", "roleId": "role3", "children": [] }
+            ];
+        });
+
+    </script>
+</body>
+</html>

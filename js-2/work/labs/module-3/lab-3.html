@@ -1,0 +1,115 @@
+﻿<!doctype html>
+
+<html>
+
+<head>
+  <title>Лабораторная работа 3: раскрывающийся список</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    function init(){
+        //
+        let lis = document.getElementsByTagName('li')
+        for (let li of lis) {
+            let uls = li.getElementsByTagName('ul')
+            
+            if (uls.length > 0) {
+                //console.log("hide"+uls[0])
+                uls[0].style.display = "none"
+                li.style.listStyleImage = 'url(imgs/plus.gif)';
+            }
+             
+            
+        }
+        let as = document.getElementsByTagName('a')
+        for(let a of as)
+            a.addEventListener('click', aClick);
+    }
+    
+    function aClick(e){
+      //
+        let li = e.target.parentNode
+        
+        {
+            
+            let uls = li.getElementsByTagName('ul')
+
+            if (uls.length > 0) {
+                //console.log("hide"+uls[0])
+                if (uls[0].style.display != "block") {
+                    uls[0].style.display = "block"
+                    li.style.listStyleImage = 'url(imgs/minus.gif)';
+                }
+                else {
+                    uls[0].style.display = "none"
+                    li.style.listStyleImage = 'url(imgs/plus.gif)';
+                }
+            }
+        }
+      }
+      window.onload = init;
+    
+  </script>
+</head>
+
+<body>
+  <h1>Каталог товаров</h1>
+  <ul>
+    <li>
+      <a href="#">Книги</a>
+      <ul>
+        <li>
+          <a href="#">Отечественные</a>
+          <ul>
+            <li><a href="#">Детективы</a>
+            </li>
+            <li><a href="#">Научная фантастика</a>
+            </li>
+            <li><a href="#">Исторические</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Зарубежные</a>
+          <ul>
+            <li><a href="#">Детективы</a>
+            </li>
+            <li><a href="#">Научная фантастика</a>
+            </li>
+            <li><a href="#">Исторические</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">DVD</a>
+      <ul>
+        <li>
+          <a href="#">Отечественные</a>
+          <ul>
+            <li><a href="#">Детективы</a>
+            </li>
+            <li><a href="#">Научная фантастика</a>
+            </li>
+            <li><a href="#">Исторические</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Зарубежные</a>
+          <ul>
+            <li><a href="#">Детективы</a>
+            </li>
+            <li><a href="#">Научная фантастика</a>
+            </li>
+            <li><a href="#">Исторические</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</body>
+
+</html>

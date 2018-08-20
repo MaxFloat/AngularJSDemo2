@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+</head>
+<body >
+    <div ng-app="" ng-init="persons=[
+         {name:'Sergey', age: 39},
+         {name:'Andrey', age: 43},
+         {name:'Elena', age: 35}
+         ]">
+        <ul>
+            <li ng-repeat="p in persons">
+                {{ p.name }}, {{p.age}}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Объект Location</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../css/form.css" />
+  <script>
+    function demoReload() {
+      location.reload();
+    }
+
+    function demoAssign() {
+      location.assign("http://ya.ru");
+    }
+
+    function demoReplace() {
+      location.replace("http://ya.ru");
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Объект Location</h1>
+
+  <button onclick="demoReload()">Reload</button>
+  <button onclick="demoAssign()">Assign</button>
+  <button onclick="demoReplace()">Replace</button>
+</body>
+
+</html>

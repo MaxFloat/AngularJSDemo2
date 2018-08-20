@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Таймеры</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../css/form.css" />
+  <script>
+    let timer;
+
+    function demoSetTimeout() {
+      timer = setTimeout("alert('setTimeout')", 3000);
+    }
+
+    function demoClearTimeout() {
+      clearTimeout(timer);
+    }
+
+    let interval;
+
+    function demoSetInterval() {
+      interval = setInterval("alert('setInterval')", 3000);
+    }
+
+    function demoClearInterval() {
+      clearInterval(interval);
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Таймеры</h1>
+  <fieldset>
+    <legend>Задержка</legend>
+    <button onclick="demoSetTimeout()">setTimeout</button>
+    <button onclick="demoClearTimeout()">clearTimeout</button>
+  </fieldset>
+  <fieldset>
+    <legend>Интервал</legend>
+    <button onclick="demoSetInterval()">setInterval</button>
+    <button onclick="demoClearInterval()">clearInterval</button>
+  </fieldset>
+</body>
+
+</html>

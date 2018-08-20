@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+    <script src="Scripts/i18n/angular-locale_ru-ru.js"></script>
+</head>
+<body>
+    <h1>Lab 5</h1>
+    <div ng-app="myApp" ng-controller="goodController">
+        <input type="search" ng-model="searchProduct">
+        <table border="1">
+            <tr>
+                <th>N</th>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Сумма</th>
+            </tr>
+            <tr ng-repeat="g in goods | filter: {title:searchProduct}|orderBy:'title' ">
+                <td>{{$index+1}}</td>
+                <td ng-if="$odd" style="background-color:#DFDFDF">{{g.title}}</td>
+                <td ng-if="$even">{{g.title}}</td>
+                <td>{{g.quantity}}</td>
+                <td>{{g.price | currency}}</td>
+                <td>{{g.quantity*g.price | currency}}</td>
+            </tr>
+            <tr>
+                <th colspan="4">Всего: </th>
+                <th>{{ getSumma(goods | filter: {title:searchProduct}) | currency}}</th>
+
+            </tr>
+        </table>
+        <copyright />
+    </div>
+    <script>
+        angular.module('myApp', []).
+            controller('goodController', function ($scope) {
+                $scope.goods = [
+                    { title: 'Книга', quantity: 10, price: 300 },
+                    { title: 'Диск', quantity: 5, price: 100 },
+                    { title: 'Флэшка', quantity: 2, price: 600 }
+                ];
+                $scope.getSumma = function (gs) {
+                    var summa = 0;
+                    for (var i = 0; i <gs.length; i++)
+                        summa += gs[i].price * gs[i].quantity;
+                    return summa;
+                }
+            });
+        angular.module('myApp').filter('myReverse', function () {
+            return function (s) {
+                var r = "";
+                for (var i = s.length - 1; i >= 0; i--)
+                    r += s[i];
+                return r;
+            }
+
+        });
+
+
+
+
+    </script>
+
+</body>
+</html>

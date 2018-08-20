@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/angular.min.js"></script>
+</head>
+<body>
+    <h1>WebApi App</h1>
+    <div ng-app="myApp" ng-controller="authController">
+        <div ng-hide="userAuthentication">
+            <div>
+                <input type="text" id="txtEmail" placeholder="Email"
+                       autofocus tabindex="1" style="margin-bottom:5px" 
+                       ng-model="Member.Email"/>
+            </div>
+            <div>
+                <input type="password" id="txtPassword" placeholder="Password"
+                       tabindex="2" style="margin-bottom:5px" 
+                       ng-model="Member.Password"/>
+            </div>
+            <div>
+                <button ng-click="login(Member)" tabindex="3">Login</button>
+            </div>
+        </div>
+        <div ng-show="userAuthentication">
+            <h3>Hello: {{userEmail}}</h3>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('authController', function ($scope, $http) {
+            $scope.userAuthentication = false;
+            $scope.login = function (Member)
+            {
+                $http({
+                    method: 'GET',
+                    url: 'api/Member/Login',
+                    params: { email: Member.Email, password: Member.Password }
+                }).then(function success() {
+                    $scope.userAuthentication = true;
+                    $scope.userEmail = Member.Email;
+                    }, function error() {
+                        $scope.userAuthentication = false;
+                    })
+
+            }
+
+        });
+
+    </script>
+</body>
+</html>

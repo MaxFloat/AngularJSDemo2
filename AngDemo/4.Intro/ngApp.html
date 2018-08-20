@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.name = 'Sergey';
+            $scope.age = 39;
+
+        });
+
+    </script>
+</head>
+<body>
+    <div data-ng-app="myApp" ng-controller="myCtrl">
+        Имя: <input type="text" ng-model="name"><br>
+        Возраст <input type="number" ng-model="age"><br>
+        <br>
+        Результат: {{ name + " : " + age}}
+        <br>
+        Результат: <span ng-bind="name"/>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="scripts/angular.min.js"></script>
+    <style>
+        input.ng-invalid {
+            outline : 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <form ng-app="myApp" ng-controller="myController" name="myForm">
+        <select ng-model="selected" ng-options="x.name for x in persons" >
+        </select>
+
+        <p ng-bind="selected"></p>
+
+        <select ng-model="prefix" name="myPrefix">
+            <option ng-repeat="p in prefixes">{{p}}</option>
+        </select>
+
+        <input type="text" ng-model="firstName" name="myFirstName" required>
+        <input type="text" ng-model="lastName" name="myLastName" required>
+        <br>
+        <div ng-show="myForm.myFirstName.$valid && myForm.myLastName.$valid">
+            <h2>Letter</h2>
+            <textarea cols="50" rows="10">Dear {{prefix}} {{firstName}} {{lastName}},
+
+Sincerly yours,
+
+            </textarea>
+        </div>
+
+</form>
+    <script>
+        angular.module('myApp', []).
+            controller('myController', function ($scope) {
+                $scope.prefixes = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr'];
+                $scope.persons = [
+                    { name: 'Sergey', country: "Russia" },
+                    { name: 'John', country: "USA" },
+                    { name: 'Li', country: "China" },
+                    { name: 'Johanson', country: "Sweden" }
+                ];
+            });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Store</title>
+    <title>Max Float</title>
+    
+    <script src="../Scripts/bootstrap.js"></script>
+
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript" src="../scripts/angular.min.js"></script>
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/i18n/angular-locale_ru-ru.js"></script>
+    <script src="../Scripts/angular-route.min.js"></script>
+    
+    <script>
+        angular.module('alApp', ['ngRoute'])
+        angular.module('alApp').config(function ($routeProvider) {
+            $routeProvider.when("/", {
+                templateUrl: 'main.html'
+            })
+                .when("/persons", {
+                    templateUrl: 'persons.html',
+                    controller: 'personsCtrl'
+                })
+                .when("/orders", {
+                    templateUrl: 'orders.html',
+                    controller: 'ordersCtrl'
+                })
+            .otherwise({
+                template: '<h1>Are you lost or something?</h1>'
+            })
+        })
+        angular.module('alApp').controller('personsCtrl', function ($scope) {
+            $scope.persons = [
+                { id: 1, firstName: 'John', lastName: 'Doe', age: 15, job: 'support' },
+                { id: 2, firstName: 'Jane', lastName: 'McGregor', age: 12, job: 'archer' },
+                { id: 3, firstName: 'Anna', lastName: 'Petroff', age: 1, job: 'grunt' },
+                { id: 4, firstName: 'Sam', lastName: 'Nukem', age: 13, job: 'archer' },
+                { id: 5, firstName: 'Dmitry', lastName: 'Bucho', age: 12, job: 'grunt' },
+                { id: 6, firstName: 'Mike', lastName: 'Tyson', age: 11, job: 'wizard' },
+                { id: 7, firstName: 'Dick', lastName: 'Einstien', age: 19, job: 'healer' }
+            ]
+            $scope.search = ''
+            $scope.alOrderBy = 'firstName'
+            $scope.accOrder = false
+            $scope.setOrder = function (key) {
+                if ($scope.alOrderBy === key)
+                    $scope.accOrder = !$scope.accOrder;
+                else
+                    $scope.accOrder = false;
+                $scope.alOrderBy = key;
+            }
+        })
+        angular.module('alApp').controller('ordersCtrl', function ($scope) {
+            $scope.orders = [
+                { person_id: 1, order: 'sword', quant: 15, price: 51 },
+                { person_id: 1, order: 'shield', quant: 13, price: 81 },
+                { person_id: 2, order: 'crossbow', quant: 18, price: 27 },
+                { person_id: 3, order: 'poison', quant: 23, price: 26 },
+                { person_id: 2, order: 'pill', quant: 45, price: 24 },
+                { person_id: 4, order: 'slingshot', quant: 13, price: 71 },
+                { person_id: 6, order: 'sword', quant: 16, price: 36 },
+                { person_id: 2, order: 'helmet', quant: 11, price: 26 },
+                { person_id: 5, order: 'apple', quant: 19, price: 63 },
+
+            ]
+            $scope.search = ''
+            $scope.alOrderBy = 'order'
+            $scope.accOrder = false
+            $scope.setOrder = function (key) {
+                if ($scope.alOrderBy === key)
+                    $scope.accOrder = !$scope.accOrder;
+                else
+                    $scope.accOrder = false;
+                $scope.alOrderBy = key;
+            }
+        })
+    </script>
+</head>
+<body ng-app="alApp">
+    <h1>General Store</h1>
+    <navs>
+        <a href="#!">main</a>
+        <a href="#!persons">persons</a>
+        <a href="#!orders">orders</a>
+    </navs>
+    <ng-view></ng-view>
+</body>
+</html>
